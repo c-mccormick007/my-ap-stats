@@ -13,7 +13,7 @@ const StatsPage = () => {
           <span>AP Stats Dashboard</span>
         </h1>
       </div>
-      <MoneySavedCounter target={} duration={7000}/>
+      <MoneySavedCounter target={25000} duration={7000}/>
       <StatsChart />
     </div>
   );
