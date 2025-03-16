@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchAndParseChartData } from "../helpers/fetchChartData";
+import Loader from "./Loader";
+
 
 const StatsChart = ({ setMoneySaved, setTimeSaved }) => {
   const [chartData, setChartData] = useState([]);
@@ -27,7 +29,7 @@ const StatsChart = ({ setMoneySaved, setTimeSaved }) => {
     loadData();
   }, [setMoneySaved, setTimeSaved]);
 
-  if (loading) return <p>Loading chart data...</p>;
+  if (loading) return <Loader />;
 
   return (
     <div className="p-6 text-white">
