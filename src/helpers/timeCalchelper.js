@@ -13,10 +13,15 @@ export function calculateTimeSaved(stats, timePerUnit) {
         return acc;
     }, {});
 
+    let totalSeconds = 0;
+
     const result = Object.entries(grouped).map(([name, value]) => {
         const secondsSaved = timePerUnit[name] ? value * timePerUnit[name] : 0;
+        totalSeconds += secondsSaved;
         return { name, value, seconds_saved: secondsSaved };
     });
+
+    result.total_seconds_saved = totalSeconds;
 
     return result;
 }
