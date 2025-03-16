@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchAndParseChartData } from "../helpers/fetchChartData";
 
-const StatsChart = () => {
+const StatsChart = ({ setMoneySaved }) => {
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -10,6 +10,12 @@ const StatsChart = () => {
       try {
         const data = await fetchAndParseChartData();
         setChartData(data);
+
+        const totalSeconds = data.total_seconds_saved || 0;
+
+        const dollarsSaved = Math.round(((totalSeconds / 60) / 60) * 27.40);
+
+        setMoneySaved(dollarsSaved);
       } catch (error) {
         console.error("Error loading chart data:", error);
       } finally {
@@ -18,7 +24,7 @@ const StatsChart = () => {
     };
 
     loadData();
-  }, []);
+  }, [setMoneySaved]);
 
   if (loading) return <p>Loading chart data...</p>;
 

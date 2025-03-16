@@ -2,8 +2,12 @@ import StatsTable from "./StatsTable";
 import StatsChart from "./StatsChart";
 import Header from "./Header";
 import MoneySavedCounter from "./MoneySavedCounter";
+import { useState } from "react";
 
 const StatsPage = () => {
+  const [moneySaved, setMoneySaved] = useState(0);
+
+
   return (
     <div className="flex min-h-screen flex-col min-w-screen bg-neutral-900">
       <Header />
@@ -13,8 +17,11 @@ const StatsPage = () => {
           <span>AP Stats Dashboard</span>
         </h1>
       </div>
-      <MoneySavedCounter target={25000} duration={7000}/>
-      <StatsChart />
+
+      <MoneySavedCounter target={moneySaved} duration={7000}/>
+
+      <StatsChart setMoneySaved={setMoneySaved}/>
+
     </div>
   );
 };
