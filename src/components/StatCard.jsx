@@ -1,7 +1,24 @@
 const StatCard = ({ label, children, color = "blue" }) => {
-    const border = `border-${color}-500`;
-    const text = `text-${color}-400`;
-    const shadow = `shadow-[0_10px_25px_rgba(255,255,255,0.2)]`;
+
+    const colorMap = {
+        blue: {
+          border: "border-blue-500",
+          text: "text-blue-400",
+          shadow: "shadow-[0_10px_25px_rgba(0,150,255,0.2)]",
+        },
+        green: {
+          border: "border-green-500",
+          text: "text-green-400",
+          shadow: "shadow-[0_10px_25px_rgba(0,255,100,0.2)]",
+        },
+        fuchsia: {
+          border: "border-fuchsia-500",
+          text: "text-fuchsia-400",
+          shadow: "shadow-[0_10px_25px_rgba(240,0,240,0.2)]",
+        },
+    };
+
+    const {border, text, shadow } = colorMap[color] || colorMap.blue;
   
     return (
       <div

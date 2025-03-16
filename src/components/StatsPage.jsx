@@ -4,6 +4,7 @@ import Header from "./Header";
 import MoneySavedCounter from "./MoneySavedCounter";
 import { useState } from "react";
 import TimeSavedCounter from "./TimeSavedCounter";
+import FutureMoneySavedCounter from "./FutureMoneySavedCounter";
 
 const StatsPage = () => {
   const [moneySaved, setMoneySaved] = useState(0);
@@ -22,6 +23,7 @@ const StatsPage = () => {
       <div className="flex flex-row justify-evenly p-4">
         <MoneySavedCounter target={moneySaved} duration={5000}/>
         <TimeSavedCounter target={timeSaved} duration={5000}/>
+        <FutureMoneySavedCounter target={moneySaved} duration={5000}/>
       </div>
 
       <StatsChart setMoneySaved={setMoneySaved} setTimeSaved={setTimeSaved}/>
