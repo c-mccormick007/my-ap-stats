@@ -1,4 +1,5 @@
 import StatsTable from "./StatsTable";
+import '../App.css';
 import StatsChart from "./StatsChart";
 import Header from "./Header";
 import MoneySavedCounter from "./MoneySavedCounter";
@@ -11,9 +12,8 @@ const StatsPage = () => {
   const [moneySaved, setMoneySaved] = useState(0);
   const [timeSaved, setTimeSaved] = useState(0);
 
-
   return (
-    <div className="min-h-screen w-screen overflow-x-hidden bg-neutral-900">
+    <div className="custom-scroll h-screen w-screen overflow-y-auto overflow-x-hidden bg-neutral-900">
       <Header />
       <div className="flex w-full flex-row items-left p-4">
         <h1 className="p-5 text-3xl font-bold text-left mb-4 flex items-center">
@@ -30,7 +30,6 @@ const StatsPage = () => {
         </div>
       </div>
       <StatsChart setMoneySaved={setMoneySaved} setTimeSaved={setTimeSaved}/>
-
     </div>
   );
 };

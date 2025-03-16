@@ -1,1 +1,39 @@
 @import "tailwindcss";
+
+/* Ensure full height and proper scrolling */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.custom-scroll {
+  height: 100vh;              
+  overflow-y: auto;           
+  scrollbar-gutter: stable;   
+
+  scrollbar-width: thin;
+  scrollbar-color: #942685  #111827;
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 12px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: #111827;
+  border-radius: 10px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00ff9f, #3b82f6);
+  border-radius: 10px;
+  border: 2px solid #111827;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00ffaa, #60a5fa);
+  box-shadow: 0 0 10px rgba(0, 255, 159, 0.5);
+}
