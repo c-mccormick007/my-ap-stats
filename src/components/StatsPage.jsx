@@ -1,6 +1,7 @@
 import StatsTable from "./StatsTable";
 import StatsChart from "./StatsChart";
 import Header from "./Header";
+import MoneySavedCounter from "./MoneySavedCounter";
 
 const StatsPage = () => {
   return (
@@ -12,6 +13,7 @@ const StatsPage = () => {
           <span>AP Stats Dashboard</span>
         </h1>
       </div>
+      <MoneySavedCounter />
       <StatsChart />
     </div>
   );
