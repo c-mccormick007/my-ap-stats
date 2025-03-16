@@ -23,11 +23,11 @@ const StatsPage = () => {
         </h1>
       </div>
       <div className="px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-4 w-full max-w-6xl mx-auto">
-          <MoneySavedCounter target={moneySaved} duration={10000}/>
-          <TimeSavedCounter target={timeSaved} duration={10000}/>
-          <FutureMoneySavedCounter target={moneySaved} duration={10000}/>
-          <FutureTimeSavedCounter target={timeSaved} duration={10000}/>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 py-4 w-full max-w-6xl mx-auto opacity-0 translate-y-4 animate-fade-in-up">
+          <MoneySavedCounter target={moneySaved} duration={3000}/>
+          <TimeSavedCounter target={timeSaved} duration={4000}/>
+          <FutureMoneySavedCounter target={moneySaved} duration={5000}/>
+          <FutureTimeSavedCounter target={timeSaved} duration={6000}/>
         </div>
       </div>
       <StatsChart setMoneySaved={setMoneySaved} setTimeSaved={setTimeSaved}/>

@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import StatCard from "./StatCard";
 
-const easeInOutExpo = (t) =>
-    t === 0
-      ? 0
-      : t === 1
-      ? 1
-      : t < 0.5
-      ? Math.pow(2, 20 * t - 10) / 2
-      : (2 - Math.pow(2, -20 * t + 10)) / 2;
+const easeInOutExpo = (t) => {
+    return t < 0.5
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  };
 
 const FutureMoneySavedCounter =({ target = 98456123, duration = 5000 }) => {
     const [current, setCurrent] = useState(0);

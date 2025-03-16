@@ -29,7 +29,13 @@ const StatsChart = ({ setMoneySaved, setTimeSaved }) => {
     loadData();
   }, [setMoneySaved, setTimeSaved]);
 
-  if (loading) return <Loader />;
+  if (loading) {
+    return (
+      <div className="min-h-[300px] flex items-center justify-center">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 text-white">
