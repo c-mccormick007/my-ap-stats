@@ -84,7 +84,6 @@ const StatsChart = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <h2 className="text-xl font-bold mb-4">📊 AP Stats Overview</h2>
       <ResponsiveContainer width="100%" height={300}>
         <PieChart>
           <Pie
