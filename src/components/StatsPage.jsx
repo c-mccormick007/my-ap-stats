@@ -12,6 +12,7 @@ const StatsPage = () => {
           <span>AP Stats Dashboard</span>
         </h1>
       </div>
+      <StatsChart />
     </div>
   );
 };
