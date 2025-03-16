@@ -1,4 +1,5 @@
 import { Octokit } from "octokit";
+import { calculateTimeSaved } from "./timeCalchelper";
 
 const octokit = new Octokit({
   auth: import.meta.env.VITE_GIT_API,
@@ -25,7 +26,7 @@ function statHelper(data) {
     }
   
     if (totalKeystrokes > 0) {
-      cleaned.push({ name: "Keystrokes", value: totalKeystrokes });
+      cleaned.push({ name: "keystrokes", value: totalKeystrokes });
     }
   
     return cleaned;
@@ -78,5 +79,34 @@ const combinedStats = allJsonData.flatMap((obj) => Object.entries(obj))
 
     const cleanedStats = statHelper(combinedStats);
 
-  return cleanedStats;
+    const timePerUnit = {
+        "keystrokes": (60/170),
+        "invoices_posted": 60,
+        "error_pages_added": 120,
+        "hotkeys_pressed": 2,
+        "text_files_generated": 25,
+        "directories_created": 10,
+        "files_moved": 5,
+        "checks_sorted": 30,
+        "ach_sorted": 30,
+        "amex_sorted": 30,
+        "wire_sorted": 30,
+        "emails_flagged": 10,
+        "emails_destroyed": 60,
+        "emails_forwarded": 30,
+        "attachments_extracted": 25,
+        "times_opened": 0,
+        "crystal_reports_avoided": 60,
+        "vendor_numbers_appended": 35,
+        "pos_received": 45,
+        "json_dbs_poarsed": 100,
+        "html_files_converted": 45,
+        "pos_found": 45,
+        "added_to_release_queue": 10,
+        "invoices_renamed": 35
+    };
+
+    const statsTimeObject = calculateTimeSaved(cleanedStats, timePerUnit);
+    console.log(statsTimeObject);
+  return statsTimeObject;
 }

@@ -5,14 +5,18 @@
  */
 
 export function calculateTimeSaved(stats, timePerUnit) {
-    return stats.map((entry) => {
-        const secondsSaved = timePerUnit[entry.name]
-        ? entry.value * timePerUnit[entry.name]
-        : 0;
+    const grouped = stats.reduce((acc, {name , value}) => {
+        if (!acc[name]) {
+            acc[name] = 0;
+        }
+        acc[name] += value;
+        return acc;
+    }, {});
 
-        return {
-            ...entry,
-            seconds_saved: secondsSaved
-        };
+    const result = Object.entries(grouped).map(([name, value]) => {
+        const secondsSaved = timePerUnit[name] ? value * timePerUnit[name] : 0;
+        return { name, value, seconds_saved: secondsSaved };
     });
+
+    return result;
 }
