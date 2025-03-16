@@ -10,7 +10,16 @@ const easeInOutExpo = (t) =>
       ? Math.pow(2, 20 * t - 10) / 2
       : (2 - Math.pow(2, -20 * t + 10)) / 2;
 
-const MoneySavedCounter =({ target = 98456123, duration = 5000 }) => {
+const formatTime = (seconds) => {
+    const totalSeconds = Math.floor(seconds);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+
+    return `${String(days).padStart(2, '0')}d : ${String(hours).padStart(2, '0')}h : ${String(minutes).padStart(2, '0')}m`;
+};
+
+const TimeSavedCounter =({ target = 98456123, duration = 5000 }) => {
     const [current, setCurrent] = useState(0);
 
     useEffect(() => {
@@ -37,13 +46,9 @@ const MoneySavedCounter =({ target = 98456123, duration = 5000 }) => {
         return () => cancelAnimationFrame(animationFrameId);
     }, [target, duration]);
 
-    const formatted = current.toLocaleString("en-US", {
-        style: "currency",
-        currency: "USD",
-        maximumFractionDigits: 0
-    });
+    const formatted = formatTime(current);
 
-    return <StatCard label="Money Saved" color="green">{formatted}</StatCard>;
+    return <StatCard label="Time Saved" color="blue">{formatted}</StatCard>;
 };
 
-export default MoneySavedCounter;
+export default TimeSavedCounter;
