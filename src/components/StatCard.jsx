@@ -5,7 +5,7 @@ const StatCard = ({ label, children, color = "blue" }) => {
   
     return (
       <div
-        className={`bg-gradient-to-br from-neutral-800 to-neutral-900 border ${border} rounded-2xl ${shadow} p-6 w-full max-w-md mx-auto`}
+        className={`bg-gradient-to-br from-neutral-800 to-neutral-900 border ${border} rounded-2xl ${shadow} p-6 w-full max-w-md m-10`}
       >
         <div className={`text-4xl font-bold ${text} text-center font-mono tracking-widest h-[4rem] flex items-center justify-center`}>
           <span className="opacity-0 absolute pointer-events-none">999d : 23h : 59m</span>
