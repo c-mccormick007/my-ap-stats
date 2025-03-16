@@ -22,13 +22,12 @@ const StatCard = ({ label, children, color = "blue" }) => {
   
     return (
       <div
-        className={`bg-gradient-to-br from-neutral-800 to-neutral-900 border ${border} rounded-2xl ${shadow} p-6 w-full max-w-md m-10`}
+        className={`bg-gradient-to-br from-neutral-800 to-neutral-900 ${border} ${shadow} rounded-2xl p-6 m-3 flex flex-col items-center justify-center h-[140px] hover:shadow-[0_0_25px_rgba(0,0,0,0.2)] hover:scale-105 transition-all duration-300`}
       >
-        <div className={`text-4xl font-bold ${text} text-center font-mono tracking-widest h-[4rem] flex items-center justify-center`}>
-          <span className="opacity-0 absolute pointer-events-none">999d : 23h : 59m</span>
+        <div className={`text-[1.75rem] md:text-2xl font-bold ${text} font-mono tracking-tight flex items-center justify-center whitespace-nowrap [font-variant-numeric:tabular-nums]`}>
           <span className="relative z-10">{children}</span>
         </div>
-        <p className="mt-3 text-center text-sm text-neutral-400 uppercase tracking-wider">{label}</p>
+        <p className="mt-3 text-center text-xs md:text-[0.6rem] lg:text-[0.5rem] text-neutral-400 uppercase tracking-wide whitespace-nowrap">{label}</p>
       </div>
     );
   };

@@ -19,7 +19,7 @@ const App = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen min-w-screen bg-gray-900 text-white">
+    <div className="flex items-center justify-center min-h-screen w-full overflow-x-hidden bg-gray-900 text-white">
       {!isAuthenticated ? (
         <form onSubmit={handleLogin} className="bg-gray-800 p-6 rounded-lg shadow-lg">
           <h2 className="text-2xl font-bold mb-4">Enter Password</h2>

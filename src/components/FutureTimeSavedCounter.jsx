@@ -10,17 +10,24 @@ const easeInOutExpo = (t) =>
       ? Math.pow(2, 20 * t - 10) / 2
       : (2 - Math.pow(2, -20 * t + 10)) / 2;
 
-const formatTime = (seconds) => {
-    const totalSeconds = Math.floor(seconds);
-    const days = Math.floor(totalSeconds / 86400);
-    const hours = Math.floor((totalSeconds % 86400) / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
+const calculateJobsSaved = (seconds) => {
+    const workdaySeconds = 8 * 60 * 60;
+    const annualWorkdays = 260;
+    const sampleDays = 18;
 
-    return `${String(days).padStart(2, '0')}d:${String(hours).padStart(2, '0')}h:${String(minutes).padStart(2, '0')}m`;
+    const projectedAnnualSeconds = (seconds / sampleDays) * annualWorkdays;
+
+    const oneJobSeconds = workdaySeconds * annualWorkdays;
+
+    const fullTimeJobsSaved = projectedAnnualSeconds / oneJobSeconds;
+
+    return fullTimeJobsSaved.toFixed(2);
 };
 
 const TimeSavedCounter =({ target = 98456123, duration = 5000 }) => {
     const [current, setCurrent] = useState(0);
+
+    //2/6 to 3/4 - implement dynamically when pushing our stats to repo
 
     useEffect(() => {
         let animationFrameId;
@@ -46,9 +53,9 @@ const TimeSavedCounter =({ target = 98456123, duration = 5000 }) => {
         return () => cancelAnimationFrame(animationFrameId);
     }, [target, duration]);
 
-    const formatted = formatTime(current);
+    const formatted = calculateJobsSaved(current);
 
-    return <StatCard label="Time Saved" color="blue">{formatted}</StatCard>;
+    return <StatCard label="Potential Yearly Time Saved" color="fuchsia">{formatted}</StatCard>;
 };
 
 export default TimeSavedCounter;
