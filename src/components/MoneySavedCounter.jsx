@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 
-const easeInOutSine = (t) => -(Math.cos(Math.PI * t) - 1) / 2;
+const easeInOutExpo = (t) =>
+    t === 0
+      ? 0
+      : t === 1
+      ? 1
+      : t < 0.5
+      ? Math.pow(2, 20 * t - 10) / 2
+      : (2 - Math.pow(2, -20 * t + 10)) / 2;
 
 const MoneySavedCounter =({ target = 98456123, duration = 5000 }) => {
     const [current, setCurrent] = useState(0);
@@ -12,7 +19,7 @@ const MoneySavedCounter =({ target = 98456123, duration = 5000 }) => {
         const animate = (now) => {
             const elapsed = now - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            const eased = easeInOutSine(progress);
+            const eased = easeInOutExpo(progress);
             const newValue = eased * target;
 
             setCurrent(newValue);

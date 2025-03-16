@@ -18,7 +18,7 @@ const StatsPage = () => {
         </h1>
       </div>
 
-      <MoneySavedCounter target={moneySaved} duration={7000}/>
+      <MoneySavedCounter target={moneySaved} duration={5000}/>
 
       <StatsChart setMoneySaved={setMoneySaved}/>
 
