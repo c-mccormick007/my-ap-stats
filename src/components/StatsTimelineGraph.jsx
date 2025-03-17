@@ -68,6 +68,23 @@ useEffect(() => {
         setMoneySaved(dollarsSaved);
         setTimeSaved(totalSeconds); 
 
+        
+        const manualEntryDate = new Date("2025-02-06T12:00:01Z");
+        const alreadyExists = timeline.some(entry => new Date(entry.date).toDateString() === manualEntryDate.toDateString());
+
+      if (!alreadyExists) {
+        timeline.push({
+          date: manualEntryDate.toISOString(),
+          stats: [
+            { name: "timeSaved", seconds_saved: 0 },
+            { name: "moneySaved", seconds_saved: 0 }
+          ]
+        });
+
+       timeline.sort((a, b) => new Date(b.date) - new Date(a.date));
+      }
+
+
         const chartData = timeline.map((entry) => {
         const totalSeconds = entry.stats.reduce((sum, stat) => sum + stat.seconds_saved, 0);
         const dollars = Math.round((totalSeconds / 3600) * 27.4);
@@ -99,13 +116,13 @@ useEffect(() => {
       <ResponsiveContainer width="100%" height={350}>
         <LineChart data={data} margin={{ top: 10, right: 20, bottom: 10, left: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#444" />
-          <XAxis dataKey="date" stroke="#ccc" />
-          <YAxis yAxisId="left" stroke="#00ff9f" label={{ value: "Hours Saved", angle: -90, position: "insideLeft", fill: "#00ff9f" }} />
-          <YAxis yAxisId="right" orientation="right" stroke="#3b82f6" label={{ value: "Dollars Saved", angle: -90, position: "insideRight", fill: "#3b82f6" }} />
+          <XAxis dataKey="date" stroke="#ccc" tick={{dy:10}}/>
+          <YAxis yAxisId="left" stroke="#3b82f6" />
+          <YAxis yAxisId="right" orientation="right" stroke="#00ff9f" />
           <Tooltip content={<CustomTooltip />} />
           <Legend />
-          <Line yAxisId="left" type="monotone" dataKey="timeSaved" stroke="#00ff9f" dot={false} strokeWidth={2} name="Time Saved (hrs)" />
-          <Line yAxisId="right" type="monotone" dataKey="moneySaved" stroke="#3b82f6" dot={false} strokeWidth={2} name="Money Saved ($)" />
+          <Line yAxisId="left" type="monotone" dataKey="timeSaved" stroke="#3b82f6" dot={false} strokeWidth={2} name="Time Saved (hrs)" />
+          <Line yAxisId="right" type="monotone" dataKey="moneySaved" stroke="#00ff9f" dot={false} strokeWidth={2} name="Money Saved ($)" />
         </LineChart>
       </ResponsiveContainer>
     </div>
