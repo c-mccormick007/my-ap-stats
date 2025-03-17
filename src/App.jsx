@@ -6,6 +6,8 @@ const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const handleLogin = async (event) => {
+    event.preventDefault();
+    const inputPassword = event.target.password.value;
     try {
       const res = await fetch("https://my-ap-stats-server.onrender.com/api/login", {
         method: "POST",

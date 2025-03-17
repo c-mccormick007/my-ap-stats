@@ -50,10 +50,10 @@ const StatsPage = () => {
           timeStyle: 'short',
         })}
       </div>
-      <div className="flex items-center justify-center w-screen text-neutral-400 text-xs mt-1">
+      <div className="flex items-center justify-center w-screen text-neutral-400 text-xs mt-1 text-center">
         Dollar amounts are based on a median salary of $28.37/hr - the average for AP specalists in Chicagoland area.
       </div>
-      <div className="flex items-center justify-center w-screen text-neutral-400 text-xs mt-1">
+      <div className="flex items-center justify-center w-screen text-neutral-400 text-xs mt-1 text-center">
         Stat tracking was implemented on 02/06/2025. This data does not reflect the work prior to this date.
       </div>
       <StatsChart setMoneySaved={setMoneySaved} setTimeSaved={setTimeSaved}/>
