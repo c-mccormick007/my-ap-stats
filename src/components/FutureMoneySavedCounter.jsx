@@ -7,14 +7,14 @@ const easeInOutExpo = (t) => {
       : 1 - Math.pow(-2 * t + 2, 3) / 2;
   };
 
-const FutureMoneySavedCounter =({ target = 98456123, duration = 5000 }) => {
+const FutureMoneySavedCounter =({ target = 98456123, duration = 5000, days = 0}) => {
     const [current, setCurrent] = useState(0);
 
     useEffect(() => {
         let animationFrameId;
         const startTime = performance.now();
 
-        target = Math.round(((target / 18) * 260)) //2/6 to 3/4 - implement dynamically when pushing our stats to repo
+        target = Math.round(((target / (days + 13)) * 260)) //13 for the lapse in time between 2/6 and first commit
 
         const animate = (now) => {
             const elapsed = now - startTime;

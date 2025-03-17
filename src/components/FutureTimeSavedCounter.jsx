@@ -7,12 +7,11 @@ const easeInOutExpo = (t) => {
       : 1 - Math.pow(-2 * t + 2, 3) / 2;
   };
 
-const calculateJobsSaved = (seconds) => {
+const calculateJobsSaved = (seconds, days) => {
     const workdaySeconds = 8 * 60 * 60;
     const annualWorkdays = 260;
-    const sampleDays = 18;
 
-    const projectedAnnualSeconds = (seconds / sampleDays) * annualWorkdays;
+    const projectedAnnualSeconds = (seconds / (days+13)) * annualWorkdays; //13 for the lapse in time between 2/6 and first commit
 
     const oneJobSeconds = workdaySeconds * annualWorkdays;
 
@@ -21,7 +20,7 @@ const calculateJobsSaved = (seconds) => {
     return fullTimeJobsSaved.toFixed(2);
 };
 
-const TimeSavedCounter =({ target = 98456123, duration = 5000 }) => {
+const TimeSavedCounter =({ target = 98456123, duration = 5000 , days = 0}) => {
     const [current, setCurrent] = useState(0);
 
     //2/6 to 3/4 - implement dynamically when pushing our stats to repo
@@ -50,9 +49,9 @@ const TimeSavedCounter =({ target = 98456123, duration = 5000 }) => {
         return () => cancelAnimationFrame(animationFrameId);
     }, [target, duration]);
 
-    const formatted = calculateJobsSaved(current);
+    const formatted = calculateJobsSaved(current, days);
 
-    return <StatCard label="Potential Yearly Time Saved" color="fuchsia">{formatted}</StatCard>;
+    return <StatCard label="Potential Yearly Time Saved" color="fuchsia">{formatted} FTEs</StatCard>;
 };
 
 export default TimeSavedCounter;

@@ -1,37 +1,43 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
 import StatsPage from './components/StatsPage.jsx';
 
-
 const App = () => {
-
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const correctPassword = import.meta.env.VITE_AP_STAT_PASSWORD;
 
   const handleLogin = (event) => {
     event.preventDefault();
     const inputPassword = event.target.password.value;
-    if (inputPassword === correctPassword){
+    if (inputPassword === correctPassword) {
       setIsAuthenticated(true);
-    }else{
-      alert("Incorrect password. Try again.")
+    } else {
+      alert("Incorrect password. Try again.");
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen w-full overflow-x-hidden bg-gray-900 text-white">
+    <div className="flex items-center justify-center min-h-screen w-full bg-neutral-900 text-white overflow-hidden">
       {!isAuthenticated ? (
-        <form onSubmit={handleLogin} className="bg-gray-800 p-6 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-bold mb-4">Enter Password</h2>
+        <form
+          onSubmit={handleLogin}
+          className="bg-gradient-to-br from-neutral-800 to-neutral-900 border border-blue-500 rounded-2xl shadow-[0_0_20px_rgba(0,150,255,0.4)] p-8 max-w-md w-full animate-fade-in-up"
+        >
+          <h2 className="text-3xl font-bold mb-6 text-center text-blue-400 tracking-wide">
+            Login
+          </h2>
           <input
             type="password"
             name="password"
-            placeholder="Password"
-            className="w-full p-2 mb-4 border border-gray-600 rounded text-black"
+            placeholder="Enter your password..."
+            className="w-full p-3 mb-6 bg-neutral-700 border border-neutral-600 rounded-lg text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
-          <button type="submit" className="bg-blue-500 px-4 py-2 rounded hover:bg-blue-600">
-            Submit
+          <button
+            type="submit"
+            className="w-full py-2 bg-blue-600 hover:bg-blue-700 transition duration-200 rounded-lg text-white font-semibold shadow-md"
+          >
+            Access Dashboard
           </button>
         </form>
       ) : (
@@ -39,6 +45,6 @@ const App = () => {
       )}
     </div>
   );
-}
+};
 
 export default App;

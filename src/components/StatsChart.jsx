@@ -3,7 +3,7 @@ import { fetchAndParseChartData } from "../helpers/fetchChartData";
 import Loader from "./Loader";
 
 
-const StatsChart = ({ setMoneySaved, setTimeSaved }) => {
+const StatsChart = () => {
   const [chartData, setChartData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -11,14 +11,12 @@ const StatsChart = ({ setMoneySaved, setTimeSaved }) => {
     const loadData = async () => {
       try {
         const data = await fetchAndParseChartData();
-        setChartData(data);
+        setChartData(data[0].stats);
 
         const totalSeconds = data.total_seconds_saved || 0;
 
         const dollarsSaved = Math.round(((totalSeconds / 60) / 60) * 27.40);
 
-        setMoneySaved(dollarsSaved);
-        setTimeSaved(totalSeconds); 
       } catch (error) {
         console.error("Error loading chart data:", error);
       } finally {
@@ -27,7 +25,7 @@ const StatsChart = ({ setMoneySaved, setTimeSaved }) => {
     };
 
     loadData();
-  }, [setMoneySaved, setTimeSaved]);
+  }, []);
 
   if (loading) {
     return (
