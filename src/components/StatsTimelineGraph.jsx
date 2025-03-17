@@ -53,7 +53,7 @@ useEffect(() => {
 
         const latest = timeline[0];
         const totalSeconds = latest.stats.reduce((sum, stat) => sum + stat.seconds_saved, 0);
-        const dollarsSaved = Math.round((totalSeconds / 3600) * 27.4);
+        const dollarsSaved = Math.round((totalSeconds / 3600) * 28.37);
 
         const start = new Date(timeline[timeline.length - 1].date);
         const end = new Date(latest.date);

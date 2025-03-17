@@ -4,15 +4,25 @@ import StatsPage from './components/StatsPage.jsx';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const correctPassword = import.meta.env.VITE_AP_STAT_PASSWORD;
 
-  const handleLogin = (event) => {
-    event.preventDefault();
-    const inputPassword = event.target.password.value;
-    if (inputPassword === correctPassword) {
-      setIsAuthenticated(true);
-    } else {
-      alert("Incorrect password. Try again.");
+  const handleLogin = async (event) => {
+    try {
+      const res = await fetch("https://my-ap-stats-server.onrender.com/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: inputPassword })
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setIsAuthenticated(true);
+      } else {
+        alert("Incorrect password. Try again.");
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      alert("Server error. Try again later.");
     }
   };
 

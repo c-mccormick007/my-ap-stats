@@ -15,7 +15,7 @@ const StatsChart = () => {
 
         const totalSeconds = data.total_seconds_saved || 0;
 
-        const dollarsSaved = Math.round(((totalSeconds / 60) / 60) * 27.40);
+        const dollarsSaved = Math.round(((totalSeconds / 60) / 60) * 28.37);
 
       } catch (error) {
         console.error("Error loading chart data:", error);
