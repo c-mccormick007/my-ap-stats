@@ -1,12 +1,22 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import './App.css';
 import StatsPage from './components/StatsPage.jsx';
+import Loader from './components/Loader.jsx';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
+  const [isServerDelayed, setIsServerDelayed] = useState(false);
+  const timeoutRef = useRef(null);
 
   const handleLogin = async (event) => {
     event.preventDefault();
+    setIsFetching(true);
+
+    timeoutRef.current = setTimeout(() => {
+      setIsServerDelayed(true);
+    }, 7000);
+
     const inputPassword = event.target.password.value;
     try {
       const res = await fetch("https://my-ap-stats-server.onrender.com/api/login", {
@@ -25,6 +35,8 @@ const App = () => {
     } catch (err) {
       console.error("Login error:", err);
       alert("Server error. Try again later.");
+    } finally {
+      setIsFetching(false);
     }
   };
 
@@ -38,19 +50,34 @@ const App = () => {
           <h2 className="text-3xl font-bold mb-6 text-center text-blue-400 tracking-wide">
             Login
           </h2>
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter your password..."
-            className="w-full p-3 mb-6 bg-neutral-700 border border-neutral-600 rounded-lg text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
-          />
-          <button
-            type="submit"
-            className="w-full py-2 bg-blue-600 hover:bg-blue-700 transition duration-200 rounded-lg text-white font-semibold shadow-md"
-          >
-            Access Dashboard
-          </button>
+
+          {isFetching ? (
+            <div className="flex flex-col items-center justify-center gap-4">
+              <Loader />
+              {isServerDelayed && (
+                <p className="text-yellow-300 text-center">
+                  Server is waking up. This may take a moment. 😴
+                </p>
+              )}
+            </div>
+          ) : (
+            <>
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password..."
+              className="w-full p-3 mb-6 bg-neutral-700 border border-neutral-600 rounded-lg text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+            <button
+              type="submit"
+              className="w-full py-2 bg-blue-600 hover:bg-blue-700 transition duration-200 rounded-lg text-white font-semibold shadow-md"
+              disabled={isFetching}
+            >
+              Access Dashboard
+            </button>
+            </>
+          )}
         </form>
       ) : (
         <StatsPage />

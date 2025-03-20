@@ -121,8 +121,8 @@ useEffect(() => {
           <YAxis yAxisId="right" orientation="right" stroke="#00ff9f" />
           <Tooltip content={<CustomTooltip />} />
           <Legend />
-          <Line yAxisId="left" type="monotone" dataKey="timeSaved" stroke="#3b82f6" dot={false} strokeWidth={2} name="Time Saved (hrs)" />
-          <Line yAxisId="right" type="monotone" dataKey="moneySaved" stroke="#00ff9f" dot={false} strokeWidth={2} name="Money Saved ($)" />
+          <Line yAxisId="left" type="monotone" dataKey="timeSaved" stroke="#3b82f6" dot={false} strokeWidth={2} name="Time Saved (hrs)" animationDuration={10000}/>
+          <Line yAxisId="right" type="monotone" dataKey="moneySaved" stroke="#00ff9f" dot={false} strokeWidth={2} name="Money Saved ($)" animationDuration={10000}/>
         </LineChart>
       </ResponsiveContainer>
     </div>
