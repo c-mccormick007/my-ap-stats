@@ -87,7 +87,7 @@ useEffect(() => {
 
         const chartData = timeline.map((entry) => {
         const totalSeconds = entry.stats.reduce((sum, stat) => sum + stat.seconds_saved, 0);
-        const dollars = Math.round((totalSeconds / 3600) * 27.4);
+        const dollars = Math.round((totalSeconds / 3600) * 28.37);
 
             return {
                 date: new Date(entry.date).toLocaleDateString(),
